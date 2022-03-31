@@ -1,4 +1,5 @@
 <?php include "includes/general/header.php"?>
+<?php include "includes/general/connection/connect.php"?>
 <?php include "includes/general/chatwidget.php"?>
 <body>
   <!-- ======= Header ======= -->

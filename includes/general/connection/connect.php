@@ -1,17 +1,31 @@
 <?php
-	$server="localhost";
-	$username="root";
-	$password="";
-	$database="msme_db";
- 	// this will avoid mysql_connect() deprecation error.
-	error_reporting( ~E_DEPRECATED & ~E_NOTICE );
-	// but I strongly suggest you to use PDO or MySQLi.
-		
-	$conn = mysqli_connect($server,$username,$password);
-	$dbcon = mysqli_select_db($conn,$database);
-	
-	if ( !$conn ) {
-		die("Connection failed : " . $mysqli->connect_error);
-	}
-	$baseurl="msme.byethost7.com";
-	?>
+if(!defined('DB_SERVER')){
+    require_once("initialize.php");
+}
+class DBConnection{
+
+    private $host = DB_SERVER;
+    private $username = DB_USERNAME;
+    private $password = DB_PASSWORD;
+    private $database = DB_NAME;
+    
+    public $conn;
+    
+    public function __construct(){
+
+        if (!isset($this->conn)) {
+            
+            $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
+            
+            if (!$this->conn) {
+                echo 'Cannot connect to database server';
+                exit;
+            }            
+        }    
+        
+    }
+    public function __destruct(){
+        $this->conn->close();
+    }
+}
+?>
