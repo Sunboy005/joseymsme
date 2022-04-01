@@ -21,6 +21,19 @@
                 <div class="chat userMessages">Hi</div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-8" id="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Type your message here...">
+            </div>
+        </div>
+        <div id="voiceInput">
+        <button id="voiceInput" name="voiceInput" class="btn btn-primary"><i class="fa fa-microphone"></i></button>
+        </div>
+        <!-- chat input field -->
+        <div id="userInput">
+            <input type="text" id="messages" autocapitalize="none" autocomplete="OFF" placeholder="Type your message here..." requred>
+            <button id="send" name="send" class="btn btn-primary"><i class="fa fa-send"></i></button>
+        </div>
     </div>
 </div>  
 <!-- Chat-Bot End -->
