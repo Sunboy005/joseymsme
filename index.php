@@ -3,6 +3,7 @@ $pagename="Home Page";
 include "includes/pages/general/head.php";
 
 if(isset($_POST['register'])){
+    
     $fname=$_POST["firstname"];
     $lname=$_POST["lastname"];
     $email=$_POST["email"];
@@ -15,12 +16,18 @@ if(isset($_POST['register'])){
     $password==hash('sha256',$password);
     $date=date("Y-m-d h:i:s");
     
+    //Insert into the database
+    $sql=mysqli_query($conn,"INSERT INTO users (first_name, last_name, email, phone, occupation, industry_id, password, date_created) VALUES ('$fname','$lname','$email','$phone','$occupation','$industry','$password','$date')");
+        
     if(mysqli_query($conn, $sql)){
-        $sql3=mysqli_query($conn,"INSERT INTO users (first_name, last_name, email, phone, occupation, industry_id, password, date_created) VALUES ('$fname','$lname','$email','$phone','$occupation','$industry','$password','$date')");
+        $_SESSION['msgtype']="alert-success";
+		$_SESSION['msg']="User registered Successfully";
     }
     else{
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $_SESSION['msgtype']="alert-danger";
+		$_SESSION['msg']="User registration failed";
     }
+    
 }
     
 include "includes/pages/general/header.php";
