@@ -25,56 +25,18 @@
            </div>
         </div>     
         <!-- chat input field -->
-        <div id="userInput">
-  
-                <input type="text" name="messages"  id="messages" autocapitalize="none" autocomplete="OFF" placeholder="Type your message here..." required>
+        <div id="userInput">  
+                <input type="text name="messages"  id="messages" autocapitalize="none" required />
                 <button type="submit" id="send" name="send" class="btn btn-primary" tooltip="Send"><i class="fa fa-send"></i></button>            
                 <button id="voiceInput" name="voiceInput" class="btn btn-info" tooltip="Voice to text"><i class="fa fa-microphone"></i></button>
-        
         </div>       
     </div>  
 </div>  
 <!-- Chat-Bot End -->
 <!-- JQuery CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="assets/js/speech.js"></script>
+<script src="assets/js/script.js"></script>
 
 <!-- JQuery Start -->
-<script>
-$(document).ready(function(){
-    $("#messages").on("keyup", function(){
-        if($("#messages").val()){
-             $("#send").css("display", "block");
-        }else{
-            return $("#send").css("display", "none");
-          
-        }
-    });
-});   
-//Send Button Click
-    $('[name="message"]').keypress(function(e){
-        console.log()
-        if(e.which === 13 && e.originalEvent.shiftKey == false){
-            $('#send').submit()
-            return false;
-        }
-    })
-$("#send").click(function(e){
-     $userMessage = $("#messages").val();
-     $appendUserMessage = '<div id="messagesContainer"><div class="chat userMessages">'+ $userMessage +'</div></div>';
-      $("#messageDisplaySection").append($appendUserMessage);
 
-      //ajax start
-    $.ajax({
-        url: "includes/general/conversations/chatbot.php",
-        type: "POST",
-        data: {messageValue: $userMessage},
-        //response type    
-        success: function(data){
-            $appendBotMessage = '<div class="chat botMessages" style="flex-start">'+ data + '</div>';
-            $("#messagesContainer").append($appendBotMessage);
-        }        
-    });
-    $("#messages").val("");
-    $("#send").css("display", "none");
-});
-</script>
