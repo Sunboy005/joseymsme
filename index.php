@@ -1,8 +1,28 @@
-
 <?php 
 $pagename="Home Page";
 include "includes/pages/general/head.php";
-include "includes/connections/connect.php";
+
+if(isset($_POST['register'])){
+    $fname=$_POST["firstname"];
+    $lname=$_POST["lastname"];
+    $email=$_POST["email"];
+    $phone=$_POST["phone"];
+    $occupation=$_POST["occupation"];
+    $industry=$_POST["industry"];
+    $password=$_POST["password"];
+    $salt="@g26jQsG&nh*&#8v";
+    $password=$password * $salt;
+    $password==hash('sha256',$password);
+    $date=date("Y-m-d h:i:s");
+    
+    if(mysqli_query($conn, $sql)){
+        $sql3=mysqli_query($conn,"INSERT INTO users (first_name, last_name, email, phone, occupation, industry_id, password, date_created) VALUES ('$fname','$lname','$email','$phone','$occupation','$industry','$password','$date')");
+    }
+    else{
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+}
+    
 include "includes/pages/general/header.php";
     include "includes/pages/accessories/chat.php";
 ?>
@@ -14,25 +34,8 @@ include "includes/pages/general/header.php";
   
 </main>
  <!-- Modal -->
- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+ <?php include "includes/pages/general/modals.php"?>
+
   <!-- ======= Footer ======= -->
 
 <?php 

@@ -1,6 +1,10 @@
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+<link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="assets/vendor/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
 
 <!-- Chat-Bot -->
 <div class="chat_icon">
@@ -9,7 +13,7 @@
 <?php $_SESSION["user"]="Amos";?>
 <div class="chat_box">
     <div id="screen">
-        <div id="chat-header"><i class="fa fa-user-o"></i>  &nbsp; MSME Chat Support &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="clickable fa fa-times" aria-hidden="true"></i></div>
+        <div id="chat-header"><i class="fa fa-user-headset-o"></i>  &nbsp; MSME Chat Support &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="clickable fa fa-times" aria-hidden="true"></i></div>
         <div id="messageDisplaySection">
            <div class="messagesContainer">
                 <?php

@@ -31,10 +31,11 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted" href="#loginModal">Login</a></li>
+          <li><button class="getstarted" style="background:#37517e"  data-toggle="modal" data-target="#loginModal">Login</button></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
+  
