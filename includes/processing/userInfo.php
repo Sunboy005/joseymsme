@@ -13,6 +13,7 @@ if (isset($_SESSION['id'])){
         $myoccupation=$row['occupation'];
         $myaddresscode=$row['address_id'];
         $myindustrycode=$row['industry_id'];
+        $mydesignationcode=$row['designation_id'];
         $myemail=$row['email'];
     }
 }

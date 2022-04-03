@@ -93,6 +93,16 @@
                         
                         <div class="hr"></div>                        
                     </div>
+                    <!-- <div class="reource-form">
+                        <form action="" method="post" onSubmit="return valid();">
+                            <div class="group">
+                                <label for="title" class="label">Title</label>
+                                <input id="title" name="title" type="text" class="input">
+                            </div>
+
+
+                        </form>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -100,6 +110,9 @@
     </div>
 </div>
 
+<div class="" >
+
+</div>
 <script>
 function checkAvailability() {
 
