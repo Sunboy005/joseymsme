@@ -81,7 +81,6 @@
 <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="assets/vendor/fastclick/lib/fastclick.js"></script>
-<script src="assets/js/chat.js"></script>
 <script src="assets/js/login-register.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

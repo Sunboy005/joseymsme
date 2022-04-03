@@ -3,7 +3,7 @@
     include "playSound.php";
     if($conn){
         $user_message = mysqli_real_escape_string($conn, $_POST['messageValue']);
-        $query ="SELECT * FROM faq WHERE incoming_message LIKE '%$user_message%'";
+        $query ="SELECT * FROM queries WHERE incoming_message LIKE '%$user_message%'";
         $runQuery = mysqli_query($conn, $query);
         if(mysqli_num_rows($runQuery)>0){
             //if user message is in database

@@ -159,6 +159,16 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   max-height: 40px;
 }
+.logo-span{
+  text-size-adjust:#23a3df;
+  font-size:10px;
+  color: #fff;
+}
+.footer-span{
+  text-size-adjust:#23a3df;
+  font-size:10px;
+  color: #6bc1e9;
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu

@@ -10,16 +10,15 @@
 <div class="chat_icon">
     <i class="fa fa-commenting-o" ></i> 
 </div>
-<?php $_SESSION["user"]="Amos";?>
 <div class="chat_box">
     <div id="screen">
         <div id="chat-header"><i class="fa fa-user-headset-o"></i>  &nbsp; MSME Chat Support &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="clickable fa fa-times" aria-hidden="true"></i></div>
         <div id="messageDisplaySection">
            <div class="messagesContainer">
                 <?php
-                if(isset($_SESSION['user'])){?>
+                if(isset($_SESSION['id'])){?>
                     <div class="chat botMessages">
-                        <p>Hi <?php $_SESSION["user"];?>, I am your MSME Chat Bot. How may I help you?</p>
+                        <p>Hi <?php echo $myfname;?>, I am your MSME Chat Bot. How may I help you?</p>
                     </div>
                 <?php }else{?>
                     <div class="chat botMessages">
@@ -39,8 +38,8 @@
 <!-- Chat-Bot End -->
 <!-- JQuery CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="assets/js/speech.js"></script>
-<script src="assets/js/script.js"></script>
+<script src="assets/js/speech.js" crossorigin="anonymous"></script>
+<script src="assets/js/script.js" crossorigin="anonymous"></script>
 
 <!-- JQuery Start -->
 

@@ -7,7 +7,13 @@ $(document).ready(function(){
           
         }
     });
-});   
+}); 
+$(document).ready(function(){
+    $('.chat_icon').click(function() {
+        $('.chat_box').toggleClass('active');
+        
+    });
+});
 //Send Button Click
 $('.messages').keypress(function(e){
     if(e.which === 13 && e.originalEvent.shiftKey == false){
