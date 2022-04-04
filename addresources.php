@@ -1,11 +1,12 @@
 <?php
 session_start();
 include('includes/processing/checklogin.php');	
+include('includes/processing/resourceinfo.php');	
 $pagename="Home Page";
 include "includes/pages/general/head.php";
     
 include "includes/pages/general/header.php";
-    include "includes/pages/accessories/chat.php";
+include "includes/pages/accessories/chat.php";
 ?>
 
 <main id="main">

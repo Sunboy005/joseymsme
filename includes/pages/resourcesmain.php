@@ -9,7 +9,7 @@
 <body>
    <div class="container" style="margin-top:150px">   
 
-   <button class="" style="background:#37517e"  data-toggle="modal" data-target="#addResourceModal">Add Resource</button>
+   <button  type="button" class="btn btn-primary" style="background:#37517e;margin-bottom:10px"  data-toggle="modal" data-target="#addResourceModal">Add Resource</button>
 
    <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -26,28 +26,45 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Michael Silva</td>
-                <td>Marketing Designer</td>
-                <td>London</td>
-                <td>66</td>
-                <td>2012/11/27</td>
-                <td>$198,500</td>
-                <td>$198,500</td>
-                <td>$198,500</td>
-                <td>$198,500</td>
-            </tr>
-            <tr>
-                <td>Paul Byrd</td>
-                <td>Chief Financial Officer (CFO)</td>
-                <td>New York</td>
-                <td>64</td>
-                <td>2010/06/09</td>
-                <td>$725,000</td>
-                <td>$198,500</td>
-                <td>$198,500</td>
-                <td>$198,500</td>
-            </tr>
+            <?php 
+              $sql = "SELECT * FROM resources";
+              $result = mysqli_query($conn, $sql);
+              while($row = mysqli_fetch_array($result)){
+              
+              if(mysqli_num_rows($result) > 0){ 
+
+                //    $sql ="SELECT * FROM status WHERE status_id=".$row['status_id'];
+                //    $result = mysqli_query($conn, $sql);
+                //    while($statusVal = mysqli_fetch_array($result)){
+                //        $statusName= $statusVal['name'];
+                //    }
+
+                //    $sql ="SELECT * FROM category WHERE category_id=".$row['category_id'];
+                //    $result = mysqli_query($conn, $sql);
+                //    while($catVal = mysqli_fetch_array($result)){
+                //        $categoryName= $catVal['name'];
+                //    }
+
+                //    $sql ="SELECT * FROM type WHERE type_id=".$row['type_id'];
+                //    $result = mysqli_query($conn, $sql);
+                //    while($typeVal = mysqli_fetch_array($result)){
+                //        $typeName= $typeVal['name'];
+                //    }
+                
+                ?>
+                <tr>
+                    <td><?= $row['title']; ?></td>
+                    <td><?= $row['summary']; ?></td>
+                    <td><?= $row['details']; ?></td>
+                    <td><?= $row['incoming_message']; ?></td>
+                    <td><?= $row['response']; ?></td>
+                    <td><?= $row['link']; ?></td>
+                    <td><?= $row['status_id']; ?></td>
+                    <td><?= $row['category_id']; ?></td>
+                    <td><?= $row['type_id']; ?></td>
+                </tr>
+                <?php  }?>
+            <?php  } ?>  
         </tbody>
         <tfoot>
             <tr>
