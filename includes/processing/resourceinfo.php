@@ -1,14 +1,8 @@
 <?php
 require_once("includes/connections/connect.php");
-//echo "Hello here";
 
-// if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-//     echo "getting there";
-// }
-
-if (isset($_POST['add'])){
-    //echo "ready to insert";
+if (!empty($_POST['add'])){
+    
 
     $title = $_POST['title'];
     $summary = $_POST['summary'];

@@ -1,89 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <div class="container" style="margin-top:150px">   
+<link rel="stylesheet" href="assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
-   <button  type="button" class="btn btn-primary" style="background:#37517e;margin-bottom:10px"  data-toggle="modal" data-target="#addResourceModal">Add Resource</button>
+<style>
+    
+    @media only screen and (max-width:600px) {
+        
+       .content{
+           display: flex;
+           flex-direction: column;
+       }
 
-   <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Incoming Message</th>
-                <th>Response</th>
-                <th>Link</th>
-                <th>Status</th>
-                <th>Category</th>
-                <th>Industry</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-              $sql = "SELECT * FROM resources";
-              $result = mysqli_query($conn, $sql);
-              while($row = mysqli_fetch_array($result)){
-              
-              if(mysqli_num_rows($result) > 0){ 
+       .x{
+           width: 100% !important;
+           background-color: yellow !important;
+       }
+         
+    }
+</style>
+<body>   
+<div class="container-fluid" style="margin-top:150px">   
+    <div class="row content">
+        <div class="col-sm-2 col-xs-12 x">
+            <?php include "includes/pages/general/adminsidebar.php";?>
+        </div>
+        <div class="col-sm-10">
+            <button  type="button" class="text-white p-2" style="background:#37517e; margin:10px"  data-toggle="modal" data-target="#addResourceModal"><i class="fa fa-plus fx-5"></i> &nbsp; Resource</button>
+            <table id="example1" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Summary</th>
+                        <th>Question</th>
+                        <th>Response</th>
+                        <th>Link</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Details</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    $sql = "SELECT * FROM resources";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_array($result)){
+                    
+                    if(mysqli_num_rows($result) > 0){ 
+                        switch ($row['status_id']) {
+                            case 1:
+                            $status = "Status1";
+                            break;
+                            case 2:
+                            $status = "Status2";
+                            break;
+                        }
+                        switch ($row['category_id']) {
+                            case 1:
+                            $category = "Category1";
+                            break;
+                            case 2:
+                            $category = "Category2";
+                            break;
+                        }
+                        switch ($row['type_id']) {
+                            case 1:
+                            $type = "Type1";
+                            break;
+                            case 2:
+                            $type = "Type2";
+                            break;
+                        }
 
-                //    $sql ="SELECT * FROM status WHERE status_id=".$row['status_id'];
-                //    $result = mysqli_query($conn, $sql);
-                //    while($statusVal = mysqli_fetch_array($result)){
-                //        $statusName= $statusVal['name'];
-                //    }
-
-                //    $sql ="SELECT * FROM category WHERE category_id=".$row['category_id'];
-                //    $result = mysqli_query($conn, $sql);
-                //    while($catVal = mysqli_fetch_array($result)){
-                //        $categoryName= $catVal['name'];
-                //    }
-
-                //    $sql ="SELECT * FROM type WHERE type_id=".$row['type_id'];
-                //    $result = mysqli_query($conn, $sql);
-                //    while($typeVal = mysqli_fetch_array($result)){
-                //        $typeName= $typeVal['name'];
-                //    }
-                
-                ?>
-                <tr>
-                    <td><?= $row['title']; ?></td>
-                    <td><?= $row['summary']; ?></td>
-                    <td><?= $row['details']; ?></td>
-                    <td><?= $row['incoming_message']; ?></td>
-                    <td><?= $row['response']; ?></td>
-                    <td><?= $row['link']; ?></td>
-                    <td><?= $row['status_id']; ?></td>
-                    <td><?= $row['category_id']; ?></td>
-                    <td><?= $row['type_id']; ?></td>
-                </tr>
-                <?php  }?>
-            <?php  } ?>  
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Incoming Message</th>
-                <th>Response</th>
-                <th>Link</th>
-                <th>Status</th>
-                <th>Category</th>
-                <th>Industry</th>
-                <th>Type</th>
-            </tr>
-        </tfoot>
-    </table>
-   </div>
+                    ?>
+                        <tr>
+                            <td><?= $row['title']; ?></td>
+                            <td><?= $row['summary']; ?></td>
+                            <td><?= $row['incoming_message']; ?></td>
+                            <td><?= $row['response']; ?></td>
+                            <td><?= $row['link']; ?></td>
+                            <td><?= $status; ?></td>
+                            <td><?= $category; ?></td>
+                            <td><?= $row['details']; ?></td> 
+                            <td><?= $type ?></td>
+                        </tr>
+                        <?php  }?>
+                    <?php  } ?>  
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Summary</th>
+                        <th>Questions</th>
+                        <th>Response</th>
+                        <th>Link</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Industry</th>
+                        <th>Type</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+            </div>
+   <script src="assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
-      $('#example').DataTable();
+      $('#example1').DataTable();
     } );
   </script>
 </body>
