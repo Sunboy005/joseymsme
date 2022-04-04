@@ -2,9 +2,6 @@
     <div class="modal-dialog login animated">
         <div class="modal-content">
         <div class="login-wrap">
-            <?php if(isset($validity_msg)){
-                echo $validity_msg;
-            }?>
             <div class="login-html">
                 <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
                 <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
@@ -61,26 +58,29 @@
                                     <div class="group">
                                         <label for="industry" class="label">Industry *</label>
                                         <select name="industry" id="industry" class="input" required> 
-                                            <option value=""style="color:black;">Select Industry</option>
+                                            <option value="" style="background:rgba(40, 58, 90, 0.9)">Select Industry</option>
 
-                                            <?php $query ="SELECT * FROM industry";
+                                            <?php 
+                                            $query ="SELECT * FROM industry";
                                             $stmt2 = $conn->prepare($query);
                                             $stmt2->execute();
                                             $res=$stmt2->get_result();
                                             while($rowd=$res->fetch_object())
                                             {
                                             ?>
-                                                <option value="<?php echo $rowd->industry_id;?>" ><font color="red"><?php echo $rowd->name;?></font></option>
+                                                <option value="<?php echo $rowd->industry_id;?>" style="background:rgba(40, 58, 90, 0.9)" ><?php echo $rowd->name;?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
                                     <div class="group">
                                         <label for="pass" class="label">Password *</label>
-                                        <input id="password" type="password" name="password" class="input" data-type="password" required>
+                                        <input id="password" type="password" name="password" onBlur="validatePassword()" class="input" data-type="password" required>
+                                        <span id="password-status" style="font-size:12px;  color:red"></span>
                                     </div>
                                     <div class="group">
                                         <label for="pass" class="label">Repeat Password *</label>
-                                        <input id="cpassword" type="password" onBlur="compare_password()" class="input" data-type="cpassword" required>
+                                        <input id="cpassword" type="password" onBlur="verifyPassword()" class="input" data-type="cpassword" required>
+                                        <span id="cpassword-status" style="font-size:12px; color:red"></span>
                                     </div>
                                 </div>
                                 <div class="group">
@@ -119,16 +119,40 @@ alert('error');
 }
 });
 }
-</script>
+
+function validatePassword() {  
+    var pw = document.getElementById("password").value;  
+  //check empty password field  
+  if(pw == "") { 
+     document.getElementById("password-status").innerHTML = "**Fill the password please!";  
+     return false;  
+  }  
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("password-status").innerHTML = "**Password length must be atleast 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("password-status").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } else {    
+     return true;
+  } 
+   
+}  
+</script> 
 <script>
-    function compare_password()
-    {
-        if(document.registration.password.value!= document.registration.cpassword.value)
-        {
-            alert("Password and Re-Type Password Field do not match !!!");
-            document.registration.cpassword.focus();
-        return false;
+    function verifyPassword() {
+        var pw = document.getElementById("password").value;
+        var cpw = document.getElementById("cpassword").value;
+        if (pw != cpw) {
+            document.getElementById("cpassword-status").innerHTML = "**Password does not match";
+            return false;
+        } else {
+            return true;
         }
-        return true;
     }
-</script>
+</script> 

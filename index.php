@@ -1,10 +1,8 @@
 <?php
 session_start();
-include('includes/processing/checklogin.php');	
 $pagename="Home Page";
 include "includes/pages/general/head.php";
-if(isset($_POST['register'])){
-    
+if(isset($_POST['register'])){    
     $fname=$_POST["fname"];
     $lname=$_POST["lname"];
     $email=$_POST["email"];
@@ -12,68 +10,57 @@ if(isset($_POST['register'])){
     $occupation=$_POST["occupation"];
     $industry=$_POST["industry"];
     $password=$_POST["password"];
-    $designation=1;
-    $hashed_password=password_hash($password, PASSWORD_DEFAULT);
+    $designation=2;
+    $salt = 'shfdyewencnhcsdsewe'.$password;
+    $hashed_password = md5($salt);            
     $date=date("Y-m-d h:i:s");
     
     //Insert into the database
+    $set_fk_checkr=mysqli_query($conn,"SET FOREIGN_KEY_CHECKS=0;");
     $sql="INSERT INTO users (first_name, last_name, email, phone, occupation, industry_id, password, date_created) VALUES ('$fname','$lname','$email','$phone','$occupation','$industry','$hashed_password','$date')";
-    if (!mysqli_query($conn,$sql))
+    if (!mysqli_query($conn,$sql) && !$set_fk_check)
   {
     $_SESSION['msgtype']="alert-danger";
-		$_SESSION['msg']="User registration failed";
-        echo "<script>alert('User registration failed');</script>";
+	$_SESSION['msg']="User registration failed";
   die('Error: ' . mysqli_error($conn));
   }
   
   $_SESSION['msgtype']="alert-success";
   $_SESSION['msg']="User registered successfully";
-  echo "<script>alert('User registered successfully');</script>";
   header("location: index.php");
 }
 
- if(isset($_POST['login'])){
-    $email=$_POST["email"];
-    $password=$_POST["password"];
-    $hashed_pass=password_hash($password, PASSWORD_DEFAULT);
-    
-    //Insert into the database
-    $stmt=$conn->prepare("SELECT email,password FROM users WHERE email=? and password=? ");
-    $stmt->bind_param('ss',$email,$hashed_pass);
-    $stmt->execute();
-    $stmt -> bind_result($id,$email);
-    $rs=$stmt->fetch();
-    $stmt->close();
-    if($rs)
-    {   $_SESSION['id']=$email;
-        $_SESSION['msgtype']="alert-success";
-        $_SESSION['msg']="User logged in successfully";
-        echo "<script>alert('User logged in successfully');</script>";
-    }
-    else{
+//check if form is submitted
+
+if (isset($_POST['login'])) {
+      
+    $username = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $salt = 'shfdyewencnhcsdsewe'.$password;
+    $hashed_password = md5($salt);                     
+    echo $hashed_password;
+    $query = "SELECT * FROM users WHERE email = '$username' AND password = '$hashed_password'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) >= 1) {
+        $row = mysqli_fetch_array($result);
+        $_SESSION['user'] = $row['email'];
+        echo '<script> window.location = "admin/dashboard" </script>';
+        header("location:userhome.php");
+    }else {
         $_SESSION['msgtype']="alert-danger";
-        $_SESSION['msg']="Wrong email or password failed";
-        echo "<script>alert('Wrong email / password failed');</script>";
-    }    
-    if (isset($_SESSION['id'])) {
-        header('Location: userhome.php');
-    }else{
-        $_SESSION['msgtype']="alert-danger";
-        $_SESSION['msg']="Wrong email or password failed";
-        echo "<script>alert('Wrong email / password failed');</script>";
-    }
+        $_SESSION['msg']="username or password is incorrect";
+    }                                 
 }
-    
 include "includes/pages/general/header.php";
-    include "includes/pages/accessories/chat.php";
+include "includes/pages/accessories/chat.php";
 ?>
 <!-- //MainPage Begins -->
 <?php include "includes/pages/home/hero.php"?>
 
 <main id="main">
-  <!-- ======= Clients Section ======= -->
+ <!-- ======= Clients Section ======= -->
   <?php include "includes/pages/home/homemain.php"?>
-  
+ 
 </main>
  <!-- Modal -->
  <?php include "includes/pages/general/modals.php"?>

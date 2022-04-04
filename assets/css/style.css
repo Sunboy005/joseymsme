@@ -132,6 +132,149 @@ h1, h2, h3, h4, h5, h6 {
   visibility: visible;
   opacity: 1;
 }
+/*-------------------------------------------------------------
+Categories
+-------------------------------------------------------------*/
+.content-wrapper {
+  padding: 60px 0;
+}
+.content-wrapper .banner-content {
+  position: absolute;
+  padding: 40px 60px;
+  left: 0px;
+  bottom: 0px;
+  color: #fff;
+}
+@media (max-width: 999px) {
+  .content-wrapper .banner-content {
+    padding: 12px 12px;
+ }
+  .content-wrapper .banner-content h1 {
+    font-size: 18px;
+ }
+}
+.content-wrapper .border-bottom-blue {
+  border-bottom: solid 1px theme-color(primary);
+}
+.content-wrapper .vertical-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.content-wrapper .vertical-menu li a {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #4f5362;
+  padding: 10.5px 0;
+  display: block;
+}
+.content-wrapper .vertical-menu li a:hover, .content-wrapper .vertical-menu li a:focus, .content-wrapper .vertical-menu li a.active {
+  text-decoration: none;
+  color: theme-color(dark);
+  font-weight: 600;
+}
+.content-wrapper .vertical-menu li:last-child a {
+  padding-bottom: 0;
+}
+.content-wrapper .badge-positioned {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+.content-wrapper .video-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  color: #000;
+  font-size: 1rem;
+  background: #fff;
+  text-align: center;
+  padding-top: 10px;
+}
+.grid-margin {
+  margin-bottom: 10px;
+}
+.stretch-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+}
+.stretch-card .card {
+  width: 100%;
+}
+.w-90 {
+  width: 90%;
+}
+.div-w-80 {
+  width: 80px;
+}
+.post-comment-section {
+  margin-top: 54px;
+  padding-top: 28px;
+  border-top: 1px solid #fff;
+}
+.post-comment-section .post-author {
+  border: 1px solid #fff;
+  margin-bottom: 50px;
+}
+.post-comment-section .post-author .post-author-content {
+  padding: 25px 35px;
+}
+.post-comment-section .testimonial {
+  border: 1px solid #fff;
+  padding: 25px 35px;
+  margin-bottom: 30px;
+}
+.post-comment-section .testimonial img {
+  width: 46px;
+  height: 46px;
+}
+.post-comment-section .comment-section .comment-box {
+  background: theme-color(light);
+  padding: 25px 35px;
+  margin-bottom: 24px;
+}
+.post-comment-section .comment-section .comment-box img {
+  width: 46px;
+  height: 46px;
+}
+.post-comment-section .comment-section .comment-box.from {
+  margin-left: 60px;
+}
+.trending {
+  margin-top: 80px;
+}
+.aboutus-wrapper {
+  padding: 0 160px;
+}
+@media (max-width: 999px) {
+  .aboutus-wrapper {
+    padding: 0;
+ }
+}
+.rotate-img {
+  overflow: hidden;
+}
+.rotate-img img {
+  -webkit-transform: rotate(0) scale(1);
+  transform: rotate(0) scale(1);
+  -webkit-transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
+}
+.rotate-img:hover img {
+  -webkit-transform: rotate(15deg) scale(1.4);
+  transform: rotate(15deg) scale(1.4);
+}
 
 /*--------------------------------------------------------------
 # Header
@@ -140,6 +283,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
+  background: rgba(40, 58, 90, 0.9);
 }
 #header.header-scrolled, #header.header-inner-pages {
   background: rgba(40, 58, 90, 0.9);
@@ -167,7 +311,7 @@ h1, h2, h3, h4, h5, h6 {
 .footer-span{
   text-size-adjust:#23a3df;
   font-size:10px;
-  color: #6bc1e9;
+  color: rgba(40, 58, 90, 0.9);
 }
 
 /*--------------------------------------------------------------
@@ -930,60 +1074,141 @@ section {
 .portfolio .portfolio-item:hover .portfolio-info {
   opacity: 1;
 }
-
 /*--------------------------------------------------------------
-# Portfolio Details
+# Featured Services
 --------------------------------------------------------------*/
-.portfolio-details {
-  padding-top: 40px;
+.featured-services {
+  padding: 0;
 }
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
+.featured-services .icon-box {
+  padding: 20px;
+  color: #5f687b;
+  background: #f9f9fa;
+  border-radius: 4px;
+  border: 1px solid #f9f9fa;
+  transition: 0.3s;
+  height: 100%;
 }
-.portfolio-details .portfolio-details-slider .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
+.featured-services .icon {
+  margin: 0 0 15px 0;
 }
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  opacity: 1;
-  border: 1px solid #47b2e4;
+.featured-services .icon i {
+  color: rgba(55, 81, 126, 0.8);
+  font-size: 36px;
 }
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #47b2e4;
+.featured-services .title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
-.portfolio-details .portfolio-info {
-  padding: 30px;
-  box-shadow: 0px 0 30px rgba(55, 81, 126, 0.08);
+.featured-services .title a {
+  color: #5f687b;
+  transition: 0.3s;
 }
-.portfolio-details .portfolio-info h3 {
-  font-size: 22px;
+.featured-services .icon-box:hover {
+  border-color: #eaecef;
+}
+.featured-services .icon-box:hover .title a {
+  color: #47b2e4;
+}
+.featured-services .description {
+  line-height: 24px;
+  font-size: 14px;
+}
+/*--------------------------------------------------------------
+# Counts
+--------------------------------------------------------------*/
+.counter-box {
+  display: block;
+  background: #f6f6f6;
+  padding: 40px 20px 37px;
+  text-align: center
+}
+
+.counter-box p {
+  margin: 5px 0 0;
+  padding: 0;
+  color: #909090;
+  font-size: 18px;
+  font-weight: 500
+}
+
+.counter-box i {
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #d2d2d2
+}
+
+.counter {
+  display: block;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  color: #666;
+  line-height: 28px
 }
-.portfolio-details .portfolio-info ul {
+
+.counter-box.colored {
+  background: #47b2e4;
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+  color: #fff
+}
+
+@media only screen 
+and (min-device-width : 400px) 
+and (max-device-width : 726px) {
+  /* Styles */
+   .set-mg {
+    margin-bottom: 50px !important;
+}
+}
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+  padding: 15px 0;
+  background: #f9f9fa;
+  min-height: 40px;
+  margin-top: 82px;
+}
+.breadcrumbs h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+.breadcrumbs ol {
+  display: flex;
+  box-align: center;
   list-style: none;
   padding: 0;
-  font-size: 15px;
+  margin: 0;
 }
-.portfolio-details .portfolio-info ul li + li {
-  margin-top: 10px;
+.breadcrumbs ol li + li {
+  padding-left: 10px;
 }
-.portfolio-details .portfolio-description {
-  padding-top: 30px;
+.breadcrumbs ol li + li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #4e83f3;
+  content: "/";
 }
-.portfolio-details .portfolio-description h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
+@media (max-width: 992px) {
+  .breadcrumbs {
+    margin-top: 58px;
+  }
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+  .breadcrumbs ol {
+    display: block;
+  }
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
 }
-.portfolio-details .portfolio-description p {
-  padding: 0;
-}
+
 
 /*--------------------------------------------------------------
 # Team
@@ -1535,7 +1760,7 @@ section {
   padding-bottom: 12px;
 }
 #footer .footer-top .footer-links {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 #footer .footer-top .footer-links ul {
   list-style: none;
@@ -1549,7 +1774,7 @@ section {
   line-height: 1;
 }
 #footer .footer-top .footer-links ul li {
-  padding: 10px 0;
+  padding: 3px 0;
   display: flex;
   align-items: center;
 }

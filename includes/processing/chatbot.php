@@ -1,27 +1,26 @@
 <?php 
     include "../connections/connect.php";
     include "playSound.php";
+    include "chatbottablecheck.php";
     if($conn){
+        $errorresponse="Sorry, I did not understand you. Please make your sentence shorter and presice.";
         $user_message = mysqli_real_escape_string($conn, $_POST['messageValue']);
-        $query ="SELECT * FROM queries WHERE incoming_message LIKE '%$user_message%'";
-        $runQuery = mysqli_query($conn, $query);
-        if(mysqli_num_rows($runQuery)>0){
-            //if user message is in database
-            $result = mysqli_fetch_assoc($runQuery);
-           if( $result['status'] == "private" && isset($_SESSION['user'])){
-                 $needed_response= $result['response'];
-           }else if( $result['status'] == "public"){
-                 $needed_response= $result['outgoing_response'];
-           }       
-        }else{
-            //if user message is not in database
-            $needed_response= "Sorry, I did not understand you. Please ask me something else.";
-        } 
+         if(checkQuery($conn, $user_message)==null){
+            if(checkResources($conn, $user_message)==null){
+                if(checkTemplates($conn, $user_message)==null){
+                    $needed_response=$errorresponse;
+                }else{
+                    $needed_response=checkTemplates($conn, $user_message);
+                }
+            }else{
+                $needed_response=checkResources($conn, $user_message);
+            }
+        }
     }else{
-        $needed_response="connection failed".mysqli_connect_errno();
-    }
+            $needed_response="connection failed please try again later";
+        }
         //Call the sound function
-        playSound($needed_response);
+        //playSound($needed_response);
         //Return the text to the user
         echo $needed_response;
 ?>

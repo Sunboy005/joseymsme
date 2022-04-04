@@ -4,7 +4,7 @@ if(!empty($_POST["email"])) {
 	$email= $_POST["email"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
 
-		echo"<span class='warning-validity'><i class='fa fa-info'></i> &nbsp; Invalid email";
+		echo "<span class='warning-validity'><i class='fa fa-info'></i> &nbsp; Invalid email";
 	}
 	else {
 		$result ="SELECT count(*) FROM users WHERE email=?";
@@ -16,7 +16,7 @@ if(!empty($_POST["email"])) {
         $stmt->close();
         if($count>0)
         {
-            echo"<span class='error-validity'><i class='fa fa-times'></i> &nbsp; Email already exist .</span>";
+            echo "<span class='error-validity'><i class='fa fa-times'></i> &nbsp; Email already exist .</span>";
         }
         else{
             echo "<span class='success-validity'><i class='fa fa-check'></i> &nbsp; Email available .</span>";
